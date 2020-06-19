@@ -1,0 +1,56 @@
+<template>
+  <article class="cart-product">
+    <div class="product-layout">
+      <div class="box-img-layout">
+        <img :src="product.url" :alt="productImageAltText" />
+      </div>
+      <p class="cart-product-name">{{ product.name }}</p>
+    </div>
+
+    <span>${{ product.price }}</span>
+  </article>
+</template>
+
+<script>
+export default {
+  name: 'CartProduct',
+  props: ['product'],
+  computed: {
+    productImageAltText() {
+      return `Box for ${this.product.name}`;
+    }
+  }
+};
+</script>
+
+<style>
+.cart-product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 103px;
+  border-bottom: 2px solid var(--colors-border);
+}
+
+.cart-product:last-of-type {
+  border-bottom: none;
+}
+
+.cart-product-name {
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-align: left;
+  margin: 0 0 0 1rem;
+  max-width: 170px;
+}
+
+.product-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+</style>
