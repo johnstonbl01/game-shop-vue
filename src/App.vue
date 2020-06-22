@@ -40,7 +40,6 @@ export default {
       this.cart = cart;
     },
     addToCart(product) {
-      console.log('addToCart()', product);
       const productIsInCart = this.cart.find(prod => prod.id === product.id);
 
       if (!productIsInCart) {

@@ -22,11 +22,8 @@ export default {
     inputIsFocused: false
   }),
   methods: {
-    setInputFocus(bool) {
-      this.inputIsFocused = bool;
-    },
     onInputFocus() {
-      this.setInputFocus = !this.inputIsFocused;
+      this.inputIsFocused = !this.inputIsFocused;
     },
     onInputSubmit(evt) {
       if (evt.key === 'Enter') {
@@ -67,5 +64,9 @@ input::placeholder {
 .search-icon {
   padding: 1rem 0 1rem 1rem;
   text-align: center;
+}
+
+.focus-border {
+  border: 1px solid var(--colors-success);
 }
 </style>

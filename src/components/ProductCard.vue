@@ -5,7 +5,7 @@
         <img :src="product.url" :alt="productImageAltText" />
       </div>
       <div class="product-details">
-        <p class="product-name">{{ this.product.name }}</p>
+        <p class="product-name">{{ product.name }}</p>
         <div class="product-extra-info-layout">
           <span class="product-published">{{ product.published }}</span>
           <span>${{ product.price }}</span>

@@ -51,25 +51,14 @@ export default {
     sortByRating(a, b) {
       return b.rating - a.rating;
     },
-    async onListTypeClick(listType) {
+    onListTypeClick(listType) {
       if (!this.products || !listType) {
         return null;
       }
 
       this.productListType = listType;
 
-      if (listType === 'popular') {
-        const popularGames = this.products.slice().sort(this.sortByRating);
-        this.shopProducts = popularGames;
-
-        return popularGames;
-      }
-
-      if (listType === 'newest') {
-        const recentGames = this.products.slice().sort((a, b) => b.published - a.published);
-        this.shopProducts = recentGames;
-        return recentGames;
-      }
+      return this.filterProductsByListType(listType);
     },
     onInputChange(value) {
       if (value === '') {
@@ -77,11 +66,22 @@ export default {
         return this.shopProducts;
       }
 
+      const sortFn =
+        this.productListType === 'newest' ? (a, b) => b.published - a.published : this.sortByRating;
+
       const updatedProductList = this.products
         .slice()
-        .filter(({ name }) => name.toLowerCase().includes(value));
+        .filter(({ name }) => name.toLowerCase().includes(value))
+        .sort(sortFn);
 
       this.shopProducts = updatedProductList;
+      return this.shopProducts;
+    },
+    filterProductsByListType(listType) {
+      const sortFn =
+        listType === 'newest' ? (a, b) => b.published - a.published : this.sortByRating;
+
+      this.shopProducts = this.products.slice().sort(sortFn);
       return this.shopProducts;
     }
   }
